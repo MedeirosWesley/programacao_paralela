@@ -1,22 +1,26 @@
 import static java.lang.Math.sqrt;
 
-public class Prime {
+public class Prime extends Thread {
     private int n;
-    public Prime(int n){
-        this.n= n;
+    private int t;
+    public Prime(int n, int t){
+        this.n= n;this.t= t;
     }
     public void run(){
-        boolean isPrime = false;
-        int end = n - 1000;
-        while (n == end){
-            for(int i = n ; n>= sqrt(n) ; i--){
+        boolean prime = true;
+        int end = n + 1000;
+        int i = 2;
+        while (n <= end){
+            for(;i<= n/2; i++){
+//                System.out.println(n + "%" + i + "=" + (n % i));
                 if(n % i == 0){
-                    break;
+                    prime = false;
                 }
             }
-            n--;
+            if(prime) System.out.println(n + " thread -> " + t);
+            prime = true;
+            i=2;
+            n++;
         }
-
-
     }
 }
